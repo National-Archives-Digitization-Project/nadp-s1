@@ -1,19 +1,14 @@
 const express = require('express')
 const router = express.Router()
-const date = require('../utils/Date');
 
 router.get('/', (req, res,) => {
     // if (!req.session.isLogggedIn) {
     //     res.redirect('/')
     // }
     res.render("dashboard", {
-        title: "Dashboard",
-        thisday: date('MMM DD, YYYY')
+        title: "Dashboard"
     })
 })
-
-
-
 
 
 router.get('/logout', (req, res,) => {
