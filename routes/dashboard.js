@@ -5,7 +5,7 @@ router.get('/', (req, res,) => {
     // if (!req.session.isLogggedIn) {
     //      res.redirect('/')
     // }
-    res.render("../dashboard", {
+    res.render("dashboard", {
         title: "Dashboard"
     })
 })

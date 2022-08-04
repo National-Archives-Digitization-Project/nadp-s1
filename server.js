@@ -32,11 +32,13 @@ server.get('/', (req, res) => {
     })
 })
 
-const loginRoute = require('./routes/login')
-server.use('/forms', loginRoute)
 
-const dashboardRoute = require('./routes/dashboard')
-server.use('/dashboard', dashboardRoute)
+server.get('/dashboard', (req, res) => {
+    res.render("home", {
+        title: "Welcome to NADP Server (I)",
+        isConnected: session.dbconnected
+    })
+})
 
 server.get('*', (req, res) => {
     res.render('404', {
