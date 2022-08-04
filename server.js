@@ -32,7 +32,6 @@ server.get('/', (req, res) => {
     })
 })
 
-
 const dashboardRoute = require('./routes/dashboard')
 server.use('/dashboard', dashboardRoute)
 
