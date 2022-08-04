@@ -19,7 +19,10 @@
     "express-session": "^1.17.3",
     "helmet": "^5.1.0",
     "http-auth": "^4.1.9",
-    "mongoose": "^6.4.6",
-    "weather-js": "^2.0.0"
+    "mongoose": "^6.4.6"
+  },
+  "engines": {
+    "node": "16.14.1",
+    "vscode": "^1.22.0"
   }
 }
