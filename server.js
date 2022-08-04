@@ -20,22 +20,17 @@ server.use(session({
 }));
 
 server.set("view engine", "ejs")
-server.set("views", path.join(__dirname, 'views'))
+// server.set("views", path.join(__dirname, 'views'))
+
 
 server.get("/", (req, res) => {
-    res.render('404', {
-        title: "NADP (I) - Page not found"
-    })
-})
-server.get("*", (req, res) => {
-    res.render('404', {
-        title: "NADP (I) - Page not found"
-    })
+    res.send("We are here")
 })
 
-server.use(express.static(path.join(__dirname, 'views')))
-server.use(express.static(path.join(__dirname, 'views', 'assets')))
 
+server.get("/test", (req, res) => {
+    res.send("We are here")
+})
 
 
 const port = process.env.PORT || 4000
