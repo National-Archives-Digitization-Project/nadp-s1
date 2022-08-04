@@ -22,8 +22,6 @@ server.use(express.json())
 server.set("view engine", "ejs")
 server.set("views", path.join(__dirname, 'views'))
 
-server.use(express.static(path.join(__dirname, 'views')))
-server.use(express.static(path.join(__dirname, 'views', 'assets')))
 
 server.get('/', (req, res) => {
     res.send('Welcome')
