@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-
 const session = require('express-session')
 let MongoDBStore = require('connect-mongodb-session')(session);
 
