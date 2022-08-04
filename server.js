@@ -33,13 +33,8 @@ server.get('/', (req, res) => {
 })
 
 
-server.get('/dashboard', (req, res) => {
-    res.render("dashboard", {
-        title: "Welcome to NADP Server (I)",
-        isConnected: session.dbconnected
-    })
-})
-
+const dashboardRoute = require('./routes/dashboard')
+server.use('/dashboard', dashboardRoute)
 
 const loginRoute = require('./routes/login')
 server.use('/forms', loginRoute)
