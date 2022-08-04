@@ -34,7 +34,7 @@ server.get('/', (req, res) => {
 
 
 server.get('/dashboard', (req, res) => {
-    res.render("home", {
+    res.render("dashboard", {
         title: "Welcome to NADP Server (I)",
         isConnected: session.dbconnected
     })
