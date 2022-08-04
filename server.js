@@ -40,6 +40,10 @@ server.get('/dashboard', (req, res) => {
     })
 })
 
+
+const loginRoute = require('./routes/login')
+server.use('/forms', loginRoute)
+
 server.get('*', (req, res) => {
     res.render('404', {
         title: "NADP (I) - Page not found"
