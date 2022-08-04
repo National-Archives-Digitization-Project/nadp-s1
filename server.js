@@ -20,18 +20,11 @@ server.use(session({
 }));
 
 server.set("view engine", "ejs")
-// server.set("views", path.join(__dirname, 'views'))
-
+server.set("views", path.join(__dirname, 'views'))
 
 server.get("/", (req, res) => {
     res.send("We are here")
 })
-
-
-server.get("/test", (req, res) => {
-    res.send("We are here")
-})
-
 
 const port = process.env.PORT || 4000
 server.listen(port, () => {
