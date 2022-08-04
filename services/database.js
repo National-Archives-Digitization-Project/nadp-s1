@@ -13,13 +13,15 @@ let sessionStore = new MongoDBStore({
     collection: 'sessions'
 });
 
-session.connected = false;
+session.dbconnected = false;
 mongoose.connection
     .on('open', () => {
-        session.connected = true;
+        session.dbconnected = true;
         console.log('Db Connected!')
     })
-    .on('error', (err) => { });
+    .on('error', (err) => {
+        session.dbconnected = false;
+    });
 
 
 module.exports = {

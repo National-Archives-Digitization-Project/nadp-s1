@@ -22,8 +22,26 @@ server.use(session({
 server.set("view engine", "ejs")
 server.set("views", path.join(__dirname, 'views'))
 
-server.get("/", (req, res) => {
-    res.send("We are here")
+server.use(express.static(path.join(__dirname, 'views')))
+server.use(express.static(path.join(__dirname, 'views', 'assets')))
+
+server.get('/', (req, res) => {
+    res.render("home", {
+        title: "Welcome to NADP Server (I)",
+        isConnected: session.dbconnected
+    })
+})
+
+const loginRoute = require('./routes/login')
+server.use('/forms', loginRoute)
+
+const dashboardRoute = require('./routes/dashboard')
+server.use('/dashboard', dashboardRoute)
+
+server.get('*', (req, res) => {
+    res.render('404', {
+        title: "NADP (I) - Page not found"
+    })
 })
 
 const port = process.env.PORT || 4000
