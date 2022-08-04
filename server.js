@@ -4,7 +4,7 @@ require('dotenv').config()
 const path = require('path')
 const ejs = require('ejs')
 const helmet = require('helmet')
-const { session, sessionStore, connected } = require('./services/database')
+const { session, sessionStore } = require('./services/database')
 
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
