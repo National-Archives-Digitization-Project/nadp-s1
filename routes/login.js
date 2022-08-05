@@ -6,8 +6,7 @@ const User = require("../models/users")
 
 router.get('/', (req, res, next) => {
     res.render("login", {
-        title: "Login | NADP Server (I)",
-        isConnected: req.session.dbconnected
+        title: "Login | NADP Server (I)"
     })
     next()
 })
