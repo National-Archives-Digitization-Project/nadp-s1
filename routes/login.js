@@ -9,12 +9,10 @@ router.post('/login', (req, res) => {
         if (err) {
             console.log(err);
         }
-        console.log(thisUser);
         req.session.User = thisUser
         req.session.username = username
         req.session.isLogggedIn = true
     })
-    console.log(req.session.isLogggedIn)
     res.redirect('/dashboard')
 })
 
