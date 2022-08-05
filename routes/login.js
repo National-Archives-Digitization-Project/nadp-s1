@@ -3,14 +3,12 @@ const router = express.Router()
 const User = require("../models/users")
 
 
-
 router.get('/', (req, res, next) => {
     res.render("login", {
         title: "Login | NADP Server (I)"
     })
     next()
 })
-
 
 
 router.post('/form', async (req, res, next) => {

@@ -6,6 +6,10 @@ const ejs = require('ejs')
 const helmet = require('helmet')
 const { session, sessionStore } = require('./services/database')
 
+
+const sess_timeout = process.env.SESSION_TIMEOUT_IN_MINS || 10
+const cookie_timeout = process.env.COOKIE_TIMEOUT_IN_HRS || 10
+
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 server.use(helmet())
@@ -16,8 +20,8 @@ server.use(session({
     proxy: true,
     resave: true,
     saveUninitialized: true,
-    expires: new Date(Date.now() + (30 * 86400 * 1000)),
-    cookie: { maxAge: new Date(Date.now() + (30 * 86400 * 1000)) }
+    expires: new Date(Date.now() + (sess_timeout * 60 * 1000)),
+    cookie: { maxAge: new Date(Date.now() + (cookie_timeout * 60 * 60 * 1000)) }
 }));
 
 server.set("view engine", "ejs")
