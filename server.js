@@ -16,7 +16,8 @@ server.use(session({
     proxy: true,
     resave: true,
     saveUninitialized: true,
-    cookie: { maxAge: 60000 }
+    expires: new Date(Date.now() + (30 * 86400 * 1000)),
+    cookie: { maxAge: new Date(Date.now() + (30 * 86400 * 1000)) }
 }));
 
 server.set("view engine", "ejs")

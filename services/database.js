@@ -23,7 +23,6 @@ mongoose.connection
         session.dbconnected = false;
     });
 
-
 module.exports = {
     session,
     sessionStore
