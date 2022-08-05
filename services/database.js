@@ -13,7 +13,6 @@ let sessionStore = new MongoDBStore({
     collection: 'sessions'
 });
 
-session.dbconnected = false;
 mongoose.connection
     .on('open', () => {
         session.dbconnected = true;
