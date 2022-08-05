@@ -6,16 +6,9 @@ router.get('/', (req, res,) => {
     if (!req.session.isLogggedIn) {
         res.redirect('/')
     }
-
-    User.findOne({ accid: req.session.username }, (err, thisUser) => {
-        console.log(thisUser);
-        if (err) {
-            console.log(err);
-        }
-        res.render("dashboard", {
-            title: "Dashboard",
-            user: req.session.thisUser
-        })
+    res.render("dashboard", {
+        title: "Dashboard",
+        user: req.session.thisUser
     })
 })
 
