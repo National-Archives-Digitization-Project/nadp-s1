@@ -10,7 +10,12 @@
             </div>
             <h4>National Archives, <strong>Enugu</strong></h4>
             <h6 class="font-weight-light">Sign in to continue.</h6>
-            <form class="pt-3" action="/login/form" enctype="application/x-www-form-urlencoded" method="post">
+            <form
+              class="pt-3"
+              action="/login/form"
+              enctype="application/x-www-form-urlencoded"
+              method="post"
+            >
               <div class="form-group">
                 <input
                   type="text"
@@ -51,11 +56,10 @@
                   </label>
                 </div>
                 <span class="text-right">
-                  <% if(isConnected){ %>
-                  <span class="font-weight-medium text-success">Database Ready</span>
-                  <% }else{ %>
-                  <span class="font-weight-medium text-danger">Database Failed</span>
-                  <% } %>
+                  <span class="font-weight-medium text-success"
+                    >Database Ready</span
+                  >
+                </span>
               </div>
 
               <div class="text-center mt-4 font-weight-light">
