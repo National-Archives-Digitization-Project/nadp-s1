@@ -36,7 +36,7 @@ const dashboardRoute = require('./routes/dashboard')
 server.use('/dashboard', dashboardRoute)
 
 const loginRoute = require('./routes/login')
-server.use('/forms', loginRoute)
+server.use('/login', loginRoute)
 
 server.get('*', (req, res) => {
     res.render('404', {

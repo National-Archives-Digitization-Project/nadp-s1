@@ -4,7 +4,7 @@ const User = require("../models/users")
 
 
 
-router.get('/login', (req, res, next) => {
+router.get('/', (req, res, next) => {
     res.render("login", {
         title: "Login | NADP Server (I)",
         isConnected: req.session.dbconnected
@@ -14,7 +14,7 @@ router.get('/login', (req, res, next) => {
 
 
 
-router.post('/login', async (req, res, next) => {
+router.post('/form', async (req, res, next) => {
     const username = req.body.staffNumber
     const password = req.body.password
     User.findOne({ accid: username }, (err, thisUser) => {
