@@ -29,7 +29,7 @@ server.use(express.static(path.join(__dirname, 'views', 'assets')))
 server.get('/', (req, res) => {
     res.render("home", {
         title: "Welcome to NADP Server (I)",
-        isConnected: session.dbconnected
+        isConnected: req.session.dbconnected
     })
 })
 
