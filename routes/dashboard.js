@@ -8,7 +8,7 @@ router.get('/', (req, res,) => {
     }
     res.render("dashboard", {
         title: "Dashboard",
-        user: req.session.thisUser
+        user: JSON.stringify(req.session.thisUser)
     })
 })
 
