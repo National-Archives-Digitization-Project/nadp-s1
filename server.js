@@ -32,14 +32,6 @@ server.get('/', (req, res) => {
     })
 })
 
-server.get('/login', (req, res, next) => {
-    res.render("login", {
-        title: "Login | NADP Server (I)",
-        isConnected: req.session.dbconnected
-    })
-    next()
-})
-
 const dashboardRoute = require('./routes/dashboard')
 server.use('/dashboard', dashboardRoute)
 
