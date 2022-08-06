@@ -18,6 +18,7 @@ const connection = mongoose.connection
         console.log('Db Connected!')
     })
     .on('error', (err) => {
+        console.log('Db failed to connect!')
     });
 
 module.exports = {

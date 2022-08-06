@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const User = require("../models/users")
 
 router.get('/', (req, res,) => {
     if (!req.session.isLogggedIn) {
@@ -8,7 +7,7 @@ router.get('/', (req, res,) => {
     }
     res.render("dashboard", {
         title: "Dashboard",
-        user: JSON.stringify(req.session.thisUser)
+        user: req.session.User
     })
 })
 

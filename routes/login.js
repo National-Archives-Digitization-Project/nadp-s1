@@ -1,29 +1,46 @@
 const express = require('express')
 const router = express.Router()
-const User = require("../models/users")
+const User = require("../models/user.model")
+const checkDuplicateEmail = require("../middlewares/verifySignUp")
+const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken");
 
+const secret = process.env.AUTH_KEY || "delta1201"
 
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
     res.render("login", {
         title: "Login | NADP Server (I)"
     })
-    next()
 })
 
-
-router.post('/form', async (req, res, next) => {
-    const username = req.body.staffNumber
+router.post('/signin', (req, res) => {
+    const email = req.body.email
     const password = req.body.password
-    User.findOne({ accid: username }, (err, thisUser) => {
-        if (err) {
-            console.log(err);
+    User.findOne({
+        email: email
+    }).then((user) => {
+        if (user) {
+            var passwordIsValid = bcrypt.compareSync(
+                password,
+                user.password
+            );
+            if (passwordIsValid) {
+                let token = jwt.sign({ id: user.id }, secret, {
+                    expiresIn: 86400 // 24 hours
+                });
+
+                req.session.token = token;
+                req.session.User = user;
+                req.session.isLogggedIn = true
+
+                res.redirect("/dashboard")
+            } else {
+                res.redirect("/login")
+            }
+        } else {
+            res.redirect("/login")
         }
-        req.session.User = thisUser
-        req.session.username = username
-        req.session.isLogggedIn = true
-        res.redirect('/dashboard')
-    })
-    next()
+    }).catch((err) => { res.redirect("/login") })
 })
 
 module.exports = router

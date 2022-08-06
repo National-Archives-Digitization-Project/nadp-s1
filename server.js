@@ -4,8 +4,8 @@ require('dotenv').config()
 const path = require('path')
 const ejs = require('ejs')
 const helmet = require('helmet')
-const { session, sessionStore } = require('./services/database')
 
+const dbCon = require('./models')
 
 const sess_timeout = process.env.SESSION_TIMEOUT_IN_MINS || 10
 const cookie_timeout = process.env.COOKIE_TIMEOUT_IN_HRS || 10
@@ -13,16 +13,27 @@ const cookie_timeout = process.env.COOKIE_TIMEOUT_IN_HRS || 10
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 server.use(helmet())
-server.use(session({
+server.use(dbCon.session({
     secret: 'NADP1',
     name: 'NADP1',
-    store: sessionStore, // connect-mongo session store
+    store: dbCon.sessionStore, // connect-mongo session store
     proxy: true,
     resave: true,
     saveUninitialized: true,
     expires: new Date(Date.now() + (sess_timeout * 60 * 1000)),
-    cookie: { maxAge: new Date(Date.now() + (cookie_timeout * 60 * 60 * 1000)) }
+    cookie: { maxAge: new Date(Date.now() + (cookie_timeout * 60 * 1000)) }
 }));
+
+const setup = require('./utils/setup')
+dbCon.mongoose.connection
+    .on('open', () => {
+        console.log('Db Connected!')
+        setup(dbCon)
+    })
+    .on('error', (err) => {
+        console.log('Db failed to connect!')
+    });
+
 
 server.set("view engine", "ejs")
 server.set("views", path.join(__dirname, 'views'))
@@ -47,6 +58,7 @@ server.get('*', (req, res) => {
         title: "NADP (I) - Page not found"
     })
 })
+
 
 const port = process.env.PORT || 4000
 server.listen(port, () => {
