@@ -2,17 +2,11 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res,) => {
-    res.render("dashboard", {
-        user: req.session.User
-    })
+    res.render("dashboard")
 })
 
 router.get('/users', (req, res,) => {
-    console.log(req.session.User)
-    res.render("users", {
-        title: req.title,
-        user: req.session.User
-    })
+    res.render("users")
 })
 
 router.get('/logout', (req, res,) => {
