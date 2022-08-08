@@ -1,23 +1,25 @@
 const jwt = require("jsonwebtoken");
 const secret = process.env.AUTH_KEY || "delta1201"
 
-
 const dbCon = require("../models");
 const User = dbCon.user;
 const Role = dbCon.role;
 
-
 verifyToken = (req, res, next) => {
-    let token = req.headers["x-access-token"];
+    let token = req.cookies['x-access-token'];
     if (!token) {
-        return res.status(403).send({ message: "No token provided!" });
+        req.verified = false
+        res.redirect("/login")
+        return next()
     }
     jwt.verify(token, secret, (err, decoded) => {
         if (err) {
-            return res.status(401).send({ message: "Unauthorized!" });
+            req.verified = false
+            res.redirect("/login")
+            return next()
         }
-        req.userId = decoded.id;
-        next();
+        req.verified = true
+        return next()
     });
 };
 

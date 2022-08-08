@@ -2,17 +2,14 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res,) => {
-    if (!req.session.isLogggedIn) {
-        res.redirect('/')
-    }
     res.render("dashboard", {
-        title: "Dashboard",
+        title: `${req.session.User.surname} ${req.session.User.firstname} - NADP Dashboard`,
         user: req.session.User
     })
 })
 
 router.get('/logout', (req, res,) => {
-    req.session.isLogggedIn = false
+    req.session.destroy();
     res.redirect('/')
 })
 

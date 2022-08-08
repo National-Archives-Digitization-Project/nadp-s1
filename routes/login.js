@@ -5,6 +5,7 @@ const checkDuplicateEmail = require("../middlewares/verifySignUp")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken");
 
+
 const secret = process.env.AUTH_KEY || "delta1201"
 
 router.get('/', (req, res) => {
@@ -28,11 +29,17 @@ router.post('/signin', (req, res) => {
                 let token = jwt.sign({ id: user.id }, secret, {
                     expiresIn: 86400 // 24 hours
                 });
+                let options = {
+                    path: "/",
+                    sameSite: true,
+                    maxAge: 1000 * 60 * 60 * 24, // would expire after 24 hours
+                    httpOnly: true, // The cookie only accessible by the web server
+                }
+                res.cookie("x-access-token", token, options);
 
                 req.session.token = token;
                 req.session.User = user;
                 req.session.isLogggedIn = true
-
                 res.redirect("/dashboard")
             } else {
                 res.redirect("/login")

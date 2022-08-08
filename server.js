@@ -2,16 +2,15 @@ const express = require('express')
 const server = express()
 require('dotenv').config()
 const path = require('path')
-const ejs = require('ejs')
 const helmet = require('helmet')
+const cookieParser = require('cookie-parser')
+const { authJwt } = require("./middlewares")
 
 const dbCon = require('./models')
 
-const sess_timeout = process.env.SESSION_TIMEOUT_IN_MINS || 10
-const cookie_timeout = process.env.COOKIE_TIMEOUT_IN_HRS || 10
-
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
+server.use(cookieParser())
 server.use(helmet())
 server.use(dbCon.session({
     secret: 'NADP1',
@@ -19,10 +18,22 @@ server.use(dbCon.session({
     store: dbCon.sessionStore, // connect-mongo session store
     proxy: true,
     resave: true,
-    saveUninitialized: true,
-    expires: new Date(Date.now() + (sess_timeout * 60 * 1000)),
-    cookie: { maxAge: new Date(Date.now() + (cookie_timeout * 60 * 1000)) }
+    saveUninitialized: false,
+    expires: 600000,
+    cookie: {
+        expires: 600000
+    }
 }));
+
+server.use('/dashboard', authJwt.verifyToken, (req, res, next) => {
+    let verified = req.verified;
+    if (!req.session.isLogggedIn || !verified) {
+        res.redirect('/')
+    }
+    req.session.isLogggedIn = true
+    next()
+})
+
 
 const setup = require('./utils/setup')
 dbCon.mongoose.connection

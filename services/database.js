@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 let MongoDBStore = require('connect-mongodb-session')(session);
 
-const dburi = process.env.MONGODB_URI || 'mongodb://localhost:27017/nadpDb'
+const dburi = process.env.MONGODB_URI || 'mongodb://localhost:27017/NADPDB'
 mongoose.connect(dburi, {
     useNewUrlParser: true,
     useUnifiedTopology: true
