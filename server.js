@@ -27,11 +27,12 @@ server.use(dbCon.session({
 
 server.use('/dashboard', authJwt.verifyToken, (req, res, next) => {
     let verified = req.verified;
+    req.title = `${req.session.User.surname} ${req.session.User.firstname} - NADP Dashboard`;
     if (!req.session.isLogggedIn || !verified) {
         res.redirect('/')
     }
     req.session.isLogggedIn = true
-    next()
+    return next()
 })
 
 
@@ -49,8 +50,8 @@ dbCon.mongoose.connection
 server.set("view engine", "ejs")
 server.set("views", path.join(__dirname, 'views'))
 
-server.use(express.static(path.join(__dirname, 'views')))
 server.use(express.static(path.join(__dirname, 'views', 'assets')))
+server.use(express.static(path.join(__dirname, 'views')))
 
 server.get('/', (req, res) => {
     res.render("home", {

@@ -3,7 +3,15 @@ const router = express.Router()
 
 router.get('/', (req, res,) => {
     res.render("dashboard", {
-        title: `${req.session.User.surname} ${req.session.User.firstname} - NADP Dashboard`,
+        title: req.title,
+        user: req.session.User
+    })
+})
+
+router.get('/users', (req, res,) => {
+    console.log(req.session.User)
+    res.render("users", {
+        title: req.title,
         user: req.session.User
     })
 })
