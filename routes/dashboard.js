@@ -19,13 +19,13 @@ router.get('/users',
         })
     },
     (req, res) => {
-        res.render("dashboard/users")
+        res.render("pages/users")
     })
 
 
 
 router.get('/add-user', (req, res) => {
-    res.render("dashboard/adduser")
+    res.render("pages/adduser")
 })
 
 router.post('/users/add-user',
