@@ -40,7 +40,7 @@ router.post('/signin', (req, res) => {
                 req.session.token = token;
                 req.session.User = user;
                 req.session.isLogggedIn = true
-                res.redirect("/dashboard")
+                res.redirect("/dashboard/")
             } else {
                 res.redirect("/login")
             }
