@@ -30,13 +30,10 @@ server.use('/dashboard', authJwt.verifyToken, (req, res, next) => {
     let domain = process.env.DOMAIN || "http://localhost:4000/";
     res.locals.domain = domain;
     res.locals.user = req.session.User;
-    if (typeof req.session.User == 'undefined') {
+    if (typeof req.session.User == 'undefined' || !req.session.isLogggedIn || !verified) {
         res.redirect('/')
     }
     res.locals.title = `${req.session.User.surname} ${req.session.User.firstname} - NADP Dashboard`;
-    if (!req.session.isLogggedIn || !verified) {
-        res.redirect('/')
-    }
     req.session.isLogggedIn = true
     return next()
 })

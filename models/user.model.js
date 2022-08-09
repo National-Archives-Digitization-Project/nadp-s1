@@ -1,5 +1,9 @@
 const mongoose = require('mongoose')
 const userSchema = new mongoose.Schema({
+    avatar: {
+        type: String,
+        default: 'images/faces/face1.jpg'
+    },
     email: {
         type: String,
         unique: true
@@ -14,10 +18,12 @@ const userSchema = new mongoose.Schema({
     roles: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Role",
-            default: "client"
+            ref: "Roles"
         }
     ],
+    token: {
+        type: String
+    },
     enabled: {
         type: Boolean,
         default: false

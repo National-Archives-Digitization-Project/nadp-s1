@@ -46,6 +46,7 @@ const setup = (dbCon) => {
             });
         }
     });
+
     dbCon.user.estimatedDocumentCount((err, count) => {
         if (!err && count === 0) {
             new dbCon.user({
@@ -55,14 +56,14 @@ const setup = (dbCon) => {
                 surname: 'Agu',
                 firstname: 'Chux',
                 enabled: true
-            }).save(err => {
+            }).save((err, user) => {
                 if (err) {
                     console.log("error", err);
                 }
-                console.log("created 'owner' account to users collection");
             });
         }
     });
+
     dbCon.setting.estimatedDocumentCount((err, count) => {
         if (!err && count === 0) {
             // initialise settings //

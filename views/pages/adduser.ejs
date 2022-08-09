@@ -1,0 +1,76 @@
+<%- include('../layouts/dashboard/header.ejs') %>
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Add New Account</h4>
+          <p class="card-description">create user login</p>
+          <form
+            class="forms-sample"
+            enctype="application/x-www-form-urlencoded"
+            action="/dashboard/users/add-user"
+            method="post"
+          >
+            <div class="form-group">
+              <label for="fn">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="fn"
+                name="fn"
+                placeholder="firstname"
+              />
+            </div>
+            <div class="form-group">
+              <label for="sn">SurName</label>
+              <input
+                type="text"
+                class="form-control"
+                id="sn"
+                name="sn"
+                placeholder="Surname"
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Email"
+              />
+            </div>
+            <div class="form-group">
+              <label for="mobile">Telephone</label>
+              <input
+                type="tel"
+                class="form-control"
+                id="mobile"
+                name="mobile"
+                placeholder="Telephone"
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Enter Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="Enter Password"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary mr-2">
+              Create Account
+            </button>
+            <button class="btn btn-light">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../layouts/dashboard/footer.ejs') %>
