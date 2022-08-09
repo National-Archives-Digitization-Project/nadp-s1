@@ -4,7 +4,7 @@ const dbCon = require("../models")
 const bcrypt = require("bcryptjs")
 
 router.get('/', (req, res) => {
-    res.render("dashboard")
+    res.render("pages/dashboard")
 })
 
 router.get('/users',
