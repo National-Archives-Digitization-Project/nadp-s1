@@ -14,4 +14,10 @@ router.get('/logout', (req, res,) => {
     res.redirect('/')
 })
 
+router.get('*', (req, res) => {
+    res.render('404', {
+        title: "NADP (I) - Page not found"
+    })
+})
+
 module.exports = router

@@ -38,6 +38,14 @@ server.use('/dashboard', authJwt.verifyToken, (req, res, next) => {
     return next()
 })
 
+
+server.use('/login', (req, res, next) => {
+    let domain = process.env.DOMAIN || "http://localhost:4000/";
+    res.locals.domain = domain;
+    return next()
+})
+
+
 const setup = require('./utils/setup')
 dbCon.mongoose.connection
     .on('open', () => {
@@ -55,6 +63,8 @@ server.use(express.static(path.join(__dirname, 'views', 'assets')))
 server.use(express.static(path.join(__dirname, 'views')))
 
 server.get('/', (req, res) => {
+    let domain = process.env.DOMAIN || "http://localhost:4000/";
+    res.locals.domain = domain;
     res.render("home", {
         title: "Welcome to NADP Server (I)"
     })
@@ -67,6 +77,8 @@ const loginRoute = require('./routes/login')
 server.use('/login', loginRoute)
 
 server.get('*', (req, res) => {
+    let domain = process.env.DOMAIN || "http://localhost:4000/";
+    res.locals.domain = domain;
     res.render('404', {
         title: "NADP (I) - Page not found"
     })
