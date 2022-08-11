@@ -22,12 +22,18 @@ dbCon.mongoose.connection
     });
 
 
-const v1Router = require('./routes/ver1');
-server.use("/ver/1/", v1Router);
+//V1 endpoints//
+const { requests, users, roles } = require('./routes/v1')
+server.use("/api/v1/roles", roles);
+server.use("/api/v1/users", users);
+server.use("/api/v1/requests", requests);
+
+
 
 server.get('*', (req, res) => {
-    res.status(200).json({ result: 0, data: [], err: 0, errMsg: "Access denied" })
+    res.status(200).json({ status: 0, err: 0, errMsg: "Invalid API endpoint", data: [] })
 })
+
 
 const port = process.env.PORT || 4000
 server.listen(port, () => {
