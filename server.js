@@ -1,18 +1,16 @@
 const express = require('express')
 const server = express()
 require('dotenv').config()
-const path = require('path')
 const helmet = require('helmet')
 const cors = require('cors')
-const { authJwt } = require("./middlewares")
 
 const dbCon = require('./models')
 
-server.use(express.urlencoded({ extended: true }))
-server.use(express.json())
+server.use(express.urlencoded({ extended: false, limit: "30mb" }))
+server.use(express.json({ limit: "30mb" }))
 server.use(helmet())
 server.use(cors({
-    origin: '*'
+    origin: "*"
 }))
 
 const setup = require('./utils/setup')
@@ -27,10 +25,13 @@ dbCon.mongoose.connection
 
 
 //V1 endpoints//
-const { requests, users, roles } = require('./routes/v1')
+const { requests, users, roles, archives, divisions, states } = require('./routes/v1')
 server.use("/api/v1/roles", roles);
 server.use("/api/v1/users", users);
 server.use("/api/v1/requests", requests);
+server.use("/api/v1/divisions", divisions);
+server.use("/api/v1/archives", archives);
+server.use("/api/v1/states", states);
 
 
 server.get('*', (req, res) => {

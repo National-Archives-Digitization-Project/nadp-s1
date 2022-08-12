@@ -15,6 +15,8 @@ dbCon.apiaccess = require("./acces.model");
 dbCon.user = require("./user.model");
 dbCon.role = require("./role.model");
 dbCon.setting = require("./setting.model");
+dbCon.archive = require("./archive.model");
+dbCon.division = require("./division.model");
 
 dbCon.session = session;
 

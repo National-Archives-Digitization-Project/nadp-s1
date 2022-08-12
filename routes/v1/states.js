@@ -7,10 +7,7 @@ const router = express();
 
 
 
-
-
-
 router.all("*", (req, res) => {
-    res.status(200).json({ status: 0, err: 0, errMsg: "Invalid Roles API endpoint", data: {} })
+    res.status(200).json({ status: 0, err: 0, errMsg: "Invalid State API endpoint", data: {} })
 })
 module.exports = router
