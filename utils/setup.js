@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs")
-
+const jwt = require("jsonwebtoken");
+const secret = process.env.AUTH_KEY || "delta1201"
 
 const setup = (dbCon) => {
     dbCon.role.estimatedDocumentCount((err, count) => {
@@ -49,17 +50,21 @@ const setup = (dbCon) => {
 
     dbCon.user.estimatedDocumentCount((err, count) => {
         if (!err && count === 0) {
-            new dbCon.user({
-                email: 'info@golojan.com',
-                mobile: '2348068573376',
-                password: bcrypt.hashSync('admin', 8),
-                surname: 'Agu',
-                firstname: 'Chux',
-                enabled: true
-            }).save((err, user) => {
-                if (err) {
-                    console.log("error", err);
-                }
+            jwt.sign({ email: "info@golojan.com", mobile: "2348068573376" }, secret, (err, token) => {
+                new dbCon.user({
+                    email: 'info@golojan.com',
+                    mobile: '2348068573376',
+                    password: bcrypt.hashSync('admin', 8),
+                    surname: 'Agu',
+                    firstname: 'Chux',
+                    token: token,
+                    enabled: true
+                }).save((err, user) => {
+                    if (err) {
+                        console.log("error", err);
+                    }
+                });
+                nUser.token = token
             });
         }
     });
@@ -68,6 +73,15 @@ const setup = (dbCon) => {
         if (!err && count === 0) {
             // initialise settings //
             new dbCon.setting({
+                debug: true,
+            })
+        }
+    });
+
+    dbCon.apiaccess.estimatedDocumentCount((err, count) => {
+        if (!err && count === 0) {
+            // initialise settings //
+            new dbCon.apiaccess({
                 debug: true,
             })
         }

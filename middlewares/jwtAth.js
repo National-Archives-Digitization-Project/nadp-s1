@@ -6,18 +6,19 @@ const User = dbCon.user;
 const Role = dbCon.role;
 
 verifyToken = (req, res, next) => {
-    let token = req.headers['x-access-token'];
+    let token = req.cookies['x-access-token'];
     if (!token) {
         req.verified = false
+        res.redirect("/login")
         return next()
     }
     jwt.verify(token, secret, (err, decoded) => {
         if (err) {
             req.verified = false
+            res.redirect("/login")
             return next()
         }
         req.verified = true
-        console.log(decoded)
         return next()
     });
 };

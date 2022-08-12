@@ -29,11 +29,9 @@ server.use("/api/v1/users", users);
 server.use("/api/v1/requests", requests);
 
 
-
 server.get('*', (req, res) => {
     res.status(200).json({ status: 0, err: 0, errMsg: "Invalid API endpoint", data: [] })
 })
-
 
 const port = process.env.PORT || 4000
 server.listen(port, () => {
