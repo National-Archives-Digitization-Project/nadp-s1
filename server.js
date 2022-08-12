@@ -3,6 +3,7 @@ const server = express()
 require('dotenv').config()
 const path = require('path')
 const helmet = require('helmet')
+const cors = require('cors')
 const { authJwt } = require("./middlewares")
 
 const dbCon = require('./models')
@@ -10,6 +11,9 @@ const dbCon = require('./models')
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 server.use(helmet())
+server.use(cors({
+    origin: '*'
+}))
 
 const setup = require('./utils/setup')
 dbCon.mongoose.connection
