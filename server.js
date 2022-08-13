@@ -23,15 +23,16 @@ dbCon.mongoose.connection
         console.log('Db failed to connect!')
     });
 
-
 //V1 endpoints//
-const { requests, users, roles, archives, divisions, states } = require('./routes/v1')
+const { requests, users, roles, archives, divisions, states, logs } = require('./routes/v1')
 server.use("/api/v1/roles", roles);
 server.use("/api/v1/users", users);
 server.use("/api/v1/requests", requests);
 server.use("/api/v1/divisions", divisions);
 server.use("/api/v1/archives", archives);
+server.use("/api/v1/logs", logs);
 server.use("/api/v1/states", states);
+//V1 endpoints//
 
 
 server.get('*', (req, res) => {

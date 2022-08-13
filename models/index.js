@@ -11,6 +11,7 @@ const dburi = process.env.MONGODB_URI || 'mongodb://localhost:27017/nadpDb'
 const dbCon = {};
 dbCon.mongoose = mongoose;
 
+dbCon.log = require("./log.model");
 dbCon.apiaccess = require("./acces.model");
 dbCon.user = require("./user.model");
 dbCon.role = require("./role.model");

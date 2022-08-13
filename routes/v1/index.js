@@ -5,6 +5,7 @@ const users = require('./users')
 const archives = require('./archives')
 const divisions = require('./divisions')
 const states = require('./states')
+const logs = require('./logs')
 
 module.exports = {
     requests,
@@ -12,5 +13,6 @@ module.exports = {
     users,
     archives,
     divisions,
-    states
+    states,
+    logs
 }

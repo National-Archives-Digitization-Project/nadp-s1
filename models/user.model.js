@@ -4,6 +4,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'images/faces/face1.jpg'
     },
+    surname: String,
+    firstname: String,
     email: {
         type: String,
         unique: true
@@ -13,17 +15,12 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
     password: String,
-    surname: String,
-    firstname: String,
     roles: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Roles"
         }
     ],
-    token: {
-        type: String
-    },
     enabled: {
         type: Boolean,
         default: false
