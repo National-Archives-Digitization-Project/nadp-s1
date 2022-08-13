@@ -19,11 +19,11 @@ router.post("/create", userExist, async (req, res) => {
         password: bcryptjs.hashSync(password, 10)
     }).save((err, user) => {
         if (err) {
-            // res.status(200).json({ status: 0, err: 0, errMsg: "Failed to save to Database", data: {} })
-            // res.end();
+            console.log(err)
+        } else {
+            res.status(200).json({ status: 1, err: 0, errMsg: "Success", data: user })
+            res.end();
         }
-        res.status(200).json({ status: 1, err: 0, errMsg: "Success", data: user })
-        res.end();
     })
 })
 
