@@ -4,8 +4,20 @@ const dbCon = require("../../models");
 const userExist = require("../../middlewares/userExist");
 const bcryptjs = require('bcryptjs');
 
-// Create new user
 // Error code 4
+// Create new user
+
+router.all("/all", async (req, res) => {
+    new dbCon.user.find({})
+        .then((users) => {
+            res.status(401).json({ status: 1, err: 0, errMsg: "Success", data: users });
+        }).catch((err) => {
+            res.status(200).json({ status: 1, err: 40, errMsg: "Error listing users", data: {} });
+        })
+    res.end();
+})
+
+
 router.post("/create", userExist, (req, res) => {
     const { surname, firstname, email, mobile, password } = req.body;
     if (!req.hasEmail) {
