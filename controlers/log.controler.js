@@ -5,12 +5,11 @@ const dbCon = require("../models");
 exports.all = async (req, res) => {
     await dbCon.log.find({})
         .then((logs) => {
-            res.status(200).json({ status: 1, err: 0, errMsg: "Success", data: logs.docs, prevPage: logs.prevPage, nextPage: logs.nextPage });
+            res.status(200).json({ status: 1, err: 0, errMsg: "Success", data: logs });
         }).catch((err) => {
-            res.status(200).json({ status: 1, err: 90, errMsg: err, data: {} });
+            res.status(500).json({ status: 0, err: 90, errMsg: err, data: {} });
         })
 }
-
 
 exports.list = async (req, res) => {
     await dbCon.log.paginate({}, {
@@ -18,10 +17,9 @@ exports.list = async (req, res) => {
         limit: req.params.limit || 100
     }, (err, logs) => {
         if (err) {
-            res.status(200).json({ status: 1, err: err, errMsg: err.errMsg, data: {} });
+            res.status(500).json({ status: 0, err: 91, errMsg: err.errMsg, data: {} });
         }
-        console.log(logs);
-        res.status(200).json({ status: 1, err: 91, errMsg: "Success", page: logs.page, totalDocs: logs.totalDocs, prevPage: logs.prevPage, nextPage: logs.nextPage, data: logs.docs });
+        res.status(200).json({ status: 1, err: 0, errMsg: "Success", page: logs.page, totalDocs: logs.totalDocs, prevPage: logs.prevPage, nextPage: logs.nextPage, data: logs.docs });
     });
 }
 
@@ -31,7 +29,7 @@ exports.info = async (req, res) => {
         .then((logs) => {
             res.status(200).json({ status: 1, err: 0, errMsg: "Success", data: logs });
         }).catch((err) => {
-            res.status(200).json({ status: 1, err: 93, errMsg: err, data: {} });
+            res.status(500).json({ status: 0, err: 93, errMsg: err, data: {} });
         })
 }
 
@@ -44,7 +42,7 @@ exports.create = async (req, res) => {
         user: Di
     }).save((err, result) => {
         if (err) {
-            res.status(500).json({ status: 1, err: 40, errMsg: err, data: {} });
+            res.status(500).json({ status: 0, err: 40, errMsg: err, data: {} });
             return;
         }
         res.status(200).json({ status: 1, err: 0, errMsg: "Success", data: result });

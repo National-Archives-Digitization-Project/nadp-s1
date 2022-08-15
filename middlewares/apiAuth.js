@@ -3,7 +3,6 @@ const secret = process.env.AUTH_KEY || "delta1201"
 
 const dbCon = require("../models");
 const User = dbCon.user;
-const Role = dbCon.role;
 
 verifyToken = (req, res, next) => {
     let token = req.headers['x-access-token'];

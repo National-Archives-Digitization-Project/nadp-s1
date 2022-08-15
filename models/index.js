@@ -43,6 +43,7 @@ redis.on('error', (err) => {
 const dbCon = {};
 dbCon.mongoose = mongoose;
 dbCon.redis = redis;
+
 dbCon.log = require("./log.model");
 dbCon.apiaccess = require("./apiacces.model");
 dbCon.user = require("./user.model");
