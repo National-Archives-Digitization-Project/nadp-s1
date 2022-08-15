@@ -8,9 +8,40 @@ let MongoDBStore = require('connect-mongodb-session')(session);
 
 const dburi = process.env.MONGODB_URI || 'mongodb://localhost:27017/nadpDb'
 
+
+const Redis = require('ioredis');
+const redis = new Redis({
+    port: Number.parseInt(process.env.REDIS_PORT) || 6379, // Redis port
+    host: process.env.REDIS_HOST || "127.0.0.1", // Redis host
+    username: process.env.REDIS_USERNAME || "default", // needs Redis >= 6
+    password: process.env.REDIS_PASSWORD || "my-top-secret",
+    db: 0,
+    retryStrategy: times => Math.min(times * 50, 2000)
+});
+
+
+//Mongoose Connection Check
+const setup = require('../utils/setup');
+mongoose.connection.on('open', () => {
+    console.log('Db Connected!')
+    setup(dbCon)
+});
+mongoose.connection.on('error', (err) => {
+    console.log('Db failed to connect!')
+});
+
+//Redis Connection Check
+redis.on('connect', () => {
+    console.log('Redis Connected!')
+});
+redis.on('error', (err) => {
+    console.log('Redis failed to connect!')
+});
+
+
 const dbCon = {};
 dbCon.mongoose = mongoose;
-
+dbCon.redis = redis;
 dbCon.log = require("./log.model");
 dbCon.apiaccess = require("./apiacces.model");
 dbCon.user = require("./user.model");
@@ -26,9 +57,6 @@ let sessionStore = new MongoDBStore({
 });
 dbCon.store = sessionStore;
 dbCon.uri = dburi;
-
-dbCon.ROLES = ["client", "user", "moderator", "admin", "developer"];
-
 dbCon.mongoose.connect(dburi, {
     useNewUrlParser: true,
     useUnifiedTopology: true
