@@ -1,13 +1,15 @@
 const express = require('express');
 const router = express();
-const dbCon = require("../../models");
 const userExist = require("../../middlewares/userExist");
 
-const { all, info, create, updatebasic } = require("../../controlers/user.controler")
+const { all, info, create, updatebasic, list } = require("../../controlers/user.controler")
 
 // Create new user
 router.all("/all", all);
-router.get("/:id/info", info)
+router.all("/:id/info", info)
+router.all("/list", all);
+router.all("/list/:page", list);
+router.all("/list/:page/:limit", list);
 router.post("/create", userExist, create)
 router.post("/:id/update", updatebasic)
 

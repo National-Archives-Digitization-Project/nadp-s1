@@ -12,8 +12,21 @@ exports.all = async (req, res) => {
         })
 }
 
+exports.list = async (req, res) => {
+    await dbCon.user.paginate({}, {
+        page: req.params.page || 1,
+        limit: req.params.limit || 100
+    }, (err, users) => {
+        if (err) {
+            res.status(200).json({ status: 1, err: err, errMsg: err.errMsg, data: {} });
+        }
+        res.status(200).json({ status: 1, err: 0, errMsg: "Success", page: users.page, totalDocs: users.totalDocs, prevPage: users.prevPage, nextPage: users.nextPage, data: users.docs });
+    });
+}
+
+
 exports.info = async (req, res) => {
-    await dbCon.user.find({ _id: req.params.id })
+    await dbCon.user.findOne({ _id: req.params.id })
         .then((users) => {
             res.status(200).json({ status: 1, err: 0, errMsg: "Success", data: users });
         }).catch((err) => {

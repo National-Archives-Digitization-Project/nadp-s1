@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const paginate = require('mongoose-paginate-v2');
+
 const userSchema = new mongoose.Schema({
     avatar: {
         type: String,
@@ -26,6 +28,8 @@ const userSchema = new mongoose.Schema({
         default: false
     }
 })
+
+userSchema.plugin(paginate);
 
 const User = new mongoose.model("Users", userSchema)
 module.exports = User;
