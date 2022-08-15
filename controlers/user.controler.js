@@ -1,6 +1,9 @@
 
 const dbCon = require("../models");
 const bcryptjs = require('bcryptjs');
+// Error code 4
+
+
 
 exports.all = async (req, res) => {
     await dbCon.user.find({})
@@ -16,7 +19,7 @@ exports.info = async (req, res) => {
         .then((users) => {
             res.status(200).json({ status: 1, err: 0, errMsg: "Success", data: users });
         }).catch((err) => {
-            res.status(200).json({ status: 1, err: 40, errMsg: err, data: {} });
+            res.status(200).json({ status: 1, err: 41, errMsg: err, data: {} });
         })
 }
 
@@ -32,13 +35,13 @@ exports.create = async (req, res) => {
             password: bcryptjs.hashSync(password, 10)
         }).save((err, result) => {
             if (err) {
-                res.status(500).json({ status: 1, err: 40, errMsg: err, data: {} });
+                res.status(500).json({ status: 1, err: 42, errMsg: err, data: {} });
                 return;
             }
             res.status(200).json({ status: 1, err: 0, errMsg: "Success", data: result });
         })
     } else {
-        res.status(200).json({ status: 1, err: 40, errMsg: "User email or password exists", data: {} });
+        res.status(200).json({ status: 1, err: 43, errMsg: "User email or password exists", data: {} });
     }
 }
 
@@ -52,6 +55,6 @@ exports.updatebasic = async (req, res) => {
         .then((user) => {
             res.status(200).json({ status: 1, err: 0, errMsg: "Success", data: user });
         }).catch((err) => {
-            res.status(200).json({ status: 1, err: 40, errMsg: err.errMsg, data: {} });
+            res.status(200).json({ status: 1, err: 44, errMsg: err.errMsg, data: {} });
         })
 }

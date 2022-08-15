@@ -5,7 +5,6 @@ const userExist = require("../../middlewares/userExist");
 
 const { all, info, create, updatebasic } = require("../../controlers/user.controler")
 
-// Error code 4
 // Create new user
 router.all("/all", all);
 router.get("/:id/info", info)
