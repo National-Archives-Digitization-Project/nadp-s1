@@ -3,8 +3,6 @@ const dbCon = require("../models");
 const bcryptjs = require('bcryptjs');
 // Error code 4
 
-
-
 exports.all = async (req, res) => {
     await dbCon.user.find({})
         .then((users) => {
@@ -22,7 +20,6 @@ exports.info = async (req, res) => {
             res.status(200).json({ status: 1, err: 41, errMsg: err, data: {} });
         })
 }
-
 
 exports.create = async (req, res) => {
     const { surname, firstname, email, mobile, password } = req.body;
@@ -51,10 +48,9 @@ exports.updatebasic = async (req, res) => {
     await dbCon.user.updateOne({ _id: req.params.id }, {
         surname: surname,
         firstname: firstname
+    }).then((user) => {
+        res.status(200).json({ status: 1, err: 0, errMsg: "Success", data: user });
+    }).catch((err) => {
+        res.status(200).json({ status: 1, err: 44, errMsg: err.errMsg, data: {} });
     })
-        .then((user) => {
-            res.status(200).json({ status: 1, err: 0, errMsg: "Success", data: user });
-        }).catch((err) => {
-            res.status(200).json({ status: 1, err: 44, errMsg: err.errMsg, data: {} });
-        })
 }

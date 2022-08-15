@@ -1,4 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const paginate = require('mongoose-paginate-v2');
+
 const logSchema = new mongoose.Schema({
     log: {
         type: String
@@ -11,7 +13,9 @@ const logSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     }
-})
+});
 
-const Log = new mongoose.model("Logs", logSchema)
+logSchema.plugin(paginate);
+
+const Log = new mongoose.model("Logs", logSchema);
 module.exports = Log;

@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express();
-const dbCon = require("../../models");
-const { all, info, create } = require("../../controlers/log.controler")
-
+const { all, info, create, list } = require("../../controlers/log.controler")
 
 router.all("/all", all);
+router.all("/list", all);
+router.all("/list/:page", list);
+router.all("/list/:page/:limit", list);
+
 router.all("/:id/info", info);
 router.post("/create", create);
 
