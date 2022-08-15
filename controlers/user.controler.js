@@ -43,12 +43,11 @@ exports.create = async (req, res) => {
 }
 
 
-exports.update = async (req, res) => {
+exports.updatebasic = async (req, res) => {
     const { surname, firstname, mobile } = req.body;
     await dbCon.user.updateOne({ _id: req.params.id }, {
         surname: surname,
-        firstname: firstname,
-        mobile: mobile
+        firstname: firstname
     })
         .then((user) => {
             res.status(200).json({ status: 1, err: 0, errMsg: "Success", data: user });
