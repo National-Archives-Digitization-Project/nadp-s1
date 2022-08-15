@@ -29,6 +29,7 @@ mongoose.connection.on('open', () => {
 mongoose.connection.on('error', (err) => {
     console.log('Db failed to connect!')
 });
+//Mongoose Connection Check
 
 //Redis Connection Check
 redis.on('connect', () => {
@@ -37,7 +38,7 @@ redis.on('connect', () => {
 redis.on('error', (err) => {
     console.log('Redis failed to connect!')
 });
-
+//Redis Connection Check
 
 const dbCon = {};
 dbCon.mongoose = mongoose;
