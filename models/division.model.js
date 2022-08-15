@@ -7,7 +7,7 @@ const divisionSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "States"
     }
-});
+}, { timestamps: true });
 
 divisionSchema.plugin(paginate);
 const Division = new mongoose.model("Divisions", divisionSchema)

@@ -8,12 +8,8 @@ const logSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Users"
-    },
-    stamp: {
-        type: Date,
-        default: Date.now()
     }
-});
+}, { timestamps: true });
 
 logSchema.plugin(paginate);
 

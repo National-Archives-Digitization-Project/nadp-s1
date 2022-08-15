@@ -19,7 +19,7 @@ const apiaccesSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
-})
+}, { timestamps: true })
 
 const ApiAccess = new mongoose.model("API_access", apiaccesSchema)
 module.exports = ApiAccess;

@@ -6,7 +6,7 @@ const settingsSchema = new mongoose.Schema({
         default: false
     },
     domain: { type: Array, default: ["localhost"] }
-})
+}, { timestamps: true })
 
 const Setting = new mongoose.model("Settings", settingsSchema)
 module.exports = Setting;
