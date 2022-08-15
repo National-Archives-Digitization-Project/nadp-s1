@@ -12,9 +12,8 @@ const dbCon = {};
 dbCon.mongoose = mongoose;
 
 dbCon.log = require("./log.model");
-dbCon.apiaccess = require("./acces.model");
+dbCon.apiaccess = require("./apiacces.model");
 dbCon.user = require("./user.model");
-dbCon.role = require("./role.model");
 dbCon.setting = require("./setting.model");
 dbCon.archive = require("./archive.model");
 dbCon.division = require("./division.model");

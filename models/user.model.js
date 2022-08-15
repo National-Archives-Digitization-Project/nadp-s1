@@ -17,12 +17,10 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
     password: String,
-    roles: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Roles"
-        }
-    ],
+    roles: {
+        type: Array,
+        default: ["user"]
+    },
     enabled: {
         type: Boolean,
         default: false

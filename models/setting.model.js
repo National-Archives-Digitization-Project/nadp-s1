@@ -5,7 +5,7 @@ const settingsSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    domain: String
+    domain: { type: Array, default: ["localhost"] }
 })
 
 const Setting = new mongoose.model("Settings", settingsSchema)
