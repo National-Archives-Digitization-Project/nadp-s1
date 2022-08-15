@@ -6,7 +6,6 @@ const cors = require('cors')
 var morgan = require("morgan");
 var compression = require("compression");
 
-
 server.use(express.urlencoded({ extended: false, limit: "30mb" }))
 server.use(express.json({ limit: "30mb" }))
 server.use(helmet())

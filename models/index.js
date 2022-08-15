@@ -8,7 +8,6 @@ let MongoDBStore = require('connect-mongodb-session')(session);
 
 const dburi = process.env.MONGODB_URI || 'mongodb://localhost:27017/nadpDb'
 
-
 const Redis = require('ioredis');
 const redis = new Redis({
     port: Number.parseInt(process.env.REDIS_PORT) || 6379, // Redis port
@@ -18,7 +17,6 @@ const redis = new Redis({
     db: 0,
     retryStrategy: times => Math.min(times * 50, 2000)
 });
-
 
 //Mongoose Connection Check
 const setup = require('../utils/setup');

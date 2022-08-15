@@ -2,6 +2,7 @@ require('dotenv').config()
 const cluster = require("cluster");
 const os = require("os");
 const CPUS = os.cpus();
+
 const useClusters = Number.parseInt(process.env.SERVER_USE_CLUSTERS || 0);
 if (cluster.isMaster && useClusters) {
     CPUS.forEach(function () {
