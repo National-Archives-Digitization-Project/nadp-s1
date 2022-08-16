@@ -5,7 +5,7 @@ const helmet = require('helmet')
 const cors = require('cors')
 const morgan = require("morgan");
 const compression = require("compression");
-const { verifyAPI } = require('./middlewares')
+const { verifyAPI, eventLog } = require('./middlewares')
 
 server.use(express.urlencoded({ extended: false, limit: "30mb" }))
 server.use(express.json({ limit: "30mb" }))
@@ -21,7 +21,6 @@ server.use(compression())
 // Verify the API Key
 server.use(verifyAPI);
 // Verify the API Key
-
 
 //V1 endpoints//
 const { requests, users, archives, divisions, states, logs } = require('./routes/v1')
