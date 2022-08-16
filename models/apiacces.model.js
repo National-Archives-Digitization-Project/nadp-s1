@@ -19,5 +19,5 @@ const apiaccesSchema = new mongoose.Schema({
     uris: { type: Array, default: ["*"] }
 }, { timestamps: true })
 
-const ApiAccess = new mongoose.model("API_access", apiaccesSchema)
+const ApiAccess = new mongoose.model("api_access", apiaccesSchema)
 module.exports = ApiAccess;
