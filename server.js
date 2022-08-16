@@ -3,8 +3,9 @@ const server = express()
 require('dotenv').config()
 const helmet = require('helmet')
 const cors = require('cors')
-var morgan = require("morgan");
-var compression = require("compression");
+const morgan = require("morgan");
+const compression = require("compression");
+const { verifyAPI } = require('./middlewares')
 
 server.use(express.urlencoded({ extended: false, limit: "30mb" }))
 server.use(express.json({ limit: "30mb" }))
@@ -16,6 +17,11 @@ server.use(cors({
 }));
 server.use(morgan('common'));
 server.use(compression())
+
+// Verify the API Key
+server.use(verifyAPI);
+// Verify the API Key
+
 
 //V1 endpoints//
 const { requests, users, archives, divisions, states, logs } = require('./routes/v1')

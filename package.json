@@ -20,6 +20,7 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-session": "^1.17.3",
+    "generate-api-key": "^1.0.1",
     "helmet": "^5.1.0",
     "ioredis": "^5.2.2",
     "jsonwebtoken": "^8.5.1",

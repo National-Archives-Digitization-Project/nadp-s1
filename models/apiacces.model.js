@@ -6,19 +6,17 @@ const apiaccesSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    uri: {
-        type: String,
-        unique: true
-    },
-    api_key: {
+    apiKey: {
         type: String,
         required: true,
         unique: true
     },
-    whitelisted: {
-        type: Boolean,
-        default: false
-    }
+    apiSecret: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    uris: { type: Array, default: ["*"] }
 }, { timestamps: true })
 
 const ApiAccess = new mongoose.model("API_access", apiaccesSchema)
