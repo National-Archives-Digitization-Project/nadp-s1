@@ -6,7 +6,7 @@ const CPUS = os.cpus();
 const useClusters = Number.parseInt(process.env.SERVER_USE_CLUSTERS || 0);
 if (cluster.isMaster && useClusters) {
     CPUS.forEach(function () {
-        cluster.fork()
+        cluster.fork();
     });
     cluster.on("listening", function (worker) {
         console.log("Cluster %d connected", worker.process.pid);

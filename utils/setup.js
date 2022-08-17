@@ -51,7 +51,7 @@ const setup = (dbCon) => {
                 app: "NADProject",
                 debug: true,
                 domain: "localhost"
-            }).save((err, settings) => {
+            }).save((err, setting) => {
                 if (err) {
                     console.log("error", err);
                 }
@@ -59,6 +59,50 @@ const setup = (dbCon) => {
             });
         }
     });
+
+    dbCon.setting.estimatedDocumentCount((err, count) => {
+        if (!err && count === 0) {
+            // initialise state //
+            new dbCon.state({
+                name: "Abuja FCT"
+            }).save((err, state) => {
+                if (err) {
+                    console.log("error", err);
+                }
+                console.log("added 'Abuja FCT' to states collection");
+            });
+
+
+            new dbCon.state({
+                name: "Enugu"
+            }).save((err, state) => {
+                if (err) {
+                    console.log("error", err);
+                }
+                console.log("added 'Enugu' to states collection");
+            });
+
+            new dbCon.state({
+                name: "Ibadan"
+            }).save((err, state) => {
+                if (err) {
+                    console.log("error", err);
+                }
+                console.log("added 'Ibadan' to states collection");
+            });
+
+            new dbCon.state({
+                name: "Kaduna"
+            }).save((err, state) => {
+                if (err) {
+                    console.log("error", err);
+                }
+                console.log("added 'Kaduna' to states collection");
+            });
+
+        }
+    });
+
 }
 
 module.exports = setup

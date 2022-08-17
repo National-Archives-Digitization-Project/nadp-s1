@@ -1,9 +1,7 @@
 const jwt = require("jsonwebtoken");
-const secret = process.env.SALT_SECRET || "delta1201"
-
 const dbCon = require("../models");
 
-verifyAPI = async (req, res, next) => {
+verifyAPIRequests = async (req, res, next) => {
     const secret = process.env.SALT_SECRET || "delta1201";
     const headers = req.headers;
     const apiToken = headers['x-api-key'];
@@ -29,4 +27,4 @@ verifyAPI = async (req, res, next) => {
     }
 }
 
-module.exports = verifyAPI;
+module.exports = verifyAPIRequests;

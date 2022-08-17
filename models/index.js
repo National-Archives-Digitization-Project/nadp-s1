@@ -48,6 +48,8 @@ dbCon.user = require("./user.model");
 dbCon.setting = require("./setting.model");
 dbCon.archive = require("./archive.model");
 dbCon.division = require("./division.model");
+dbCon.province = require("./province.model");
+dbCon.state = require("./state.model");
 
 dbCon.session = session;
 

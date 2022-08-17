@@ -34,6 +34,23 @@ exports.info = async (req, res) => {
         })
 }
 
+
+exports.logon = async (req, res) => {
+    const { username, password } = req.body;
+    await dbCon.user.findOne({ email: username })
+        .then((user) => {
+            let isValid = bcryptjs.compareSync(password, user.password)
+            if (isValid) {
+                res.status(200).json({ status: 1, err: 0, errMsg: "Success", data: user });
+            } else {
+                res.status(200).json({ status: 0, err: 41, errMsg: "Login details incorrect", data: {} });
+            }
+        }).catch((err) => {
+            res.status(200).json({ status: 1, err: 41, errMsg: err, data: {} });
+        })
+}
+
+
 exports.create = async (req, res) => {
     const { surname, firstname, email, mobile, password } = req.body;
     if (!req.hasEmail) {

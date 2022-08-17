@@ -29,5 +29,5 @@ const userSchema = new mongoose.Schema({
 
 userSchema.plugin(paginate);
 
-const User = new mongoose.model("Users", userSchema)
+const User = new mongoose.model("users", userSchema)
 module.exports = User;

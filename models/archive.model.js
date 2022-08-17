@@ -8,5 +8,5 @@ const achiveSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 achiveSchema.plugin(paginate);
-const Archive = new mongoose.model("Archives", achiveSchema)
+const Archive = new mongoose.model("archives", achiveSchema)
 module.exports = Archive;

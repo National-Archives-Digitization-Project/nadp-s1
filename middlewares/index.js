@@ -3,7 +3,7 @@ const userExist = require("./userExist");
 const eventLog = require("./eventLog");
 
 module.exports = {
-    verifyAPI,
+    verifyAPIRequests,
     userExist,
     eventLog
 };

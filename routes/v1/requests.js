@@ -3,6 +3,7 @@ const router = express();
 
 
 router.all("*", (req, res) => {
-    res.status(401).json({ status: 0, err: 0, errMsg: "Invalid Request API endpoint", data: {} })
-})
-module.exports = router
+    res.status(401).json({ status: 0, err: 0, errMsg: "Invalid Request API endpoint", data: {} });
+});
+
+module.exports = router;

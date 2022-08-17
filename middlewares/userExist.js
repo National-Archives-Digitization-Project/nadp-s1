@@ -9,7 +9,7 @@ userExist = async (req, res, next) => {
         req.hasEmail = false;
         if (user) {
             req.hasEmail = true;
-            //Check Mobile
+            // Check Mobile
             User.findOne({
                 mobile: req.body.mobile
             }).then((user) => {
@@ -21,7 +21,7 @@ userExist = async (req, res, next) => {
                 req.hasEmail = false;
                 return next();
             })
-            //Check Mobile
+            // Check Mobile
         }
         return next()
     }).catch((err) => {

@@ -9,9 +9,9 @@ const logSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Users"
     }
-}, { timestamps: true });
+}, { timestamps: { type: Date, index: true, default: Date.now, expires: '1d' } });
 
 logSchema.plugin(paginate);
 
-const Log = new mongoose.model("Logs", logSchema);
+const Log = new mongoose.model("logs", logSchema);
 module.exports = Log;

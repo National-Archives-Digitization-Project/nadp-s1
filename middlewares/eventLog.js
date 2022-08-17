@@ -1,12 +1,14 @@
 
 
 const dbCon = require("../models");
-
 eventLog = async (req, res, next) => {
-    res.on('finish', (status) => {
-        console.log(status)
+    const userId = req.body.user || null;
+    if (userId === null) {
         next();
-    })
+    } else {
+        console.log(userId)
+        next();
+    }
 }
 
 module.exports = eventLog;

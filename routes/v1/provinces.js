@@ -4,8 +4,8 @@ const router = express();
 
 
 
-
 router.all("*", (req, res) => {
-    res.status(401).json({ status: 0, err: 0, errMsg: "Invalid Division API endpoint", data: {} });
-})
+    res.status(401).json({ status: 0, err: 0, errMsg: "Invalid Province API endpoint", data: {} })
+});
+
 module.exports = router;

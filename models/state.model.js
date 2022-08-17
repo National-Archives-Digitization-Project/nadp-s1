@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 
 const stateSchema = new mongoose.Schema({
-    title: String
+    name: String,
+    divisions: [
+        { name: String }
+    ]
 }, { timestamps: true });
 
-const State = new mongoose.model("States", stateSchema)
+const State = new mongoose.model("states", stateSchema)
 module.exports = State;
