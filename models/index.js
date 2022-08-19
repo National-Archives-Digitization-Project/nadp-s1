@@ -50,6 +50,8 @@ dbCon.archive = require("./archive.model");
 dbCon.division = require("./division.model");
 dbCon.province = require("./province.model");
 dbCon.state = require("./state.model");
+// App State Management Data
+dbCon.context = require("./context.model");
 
 dbCon.session = session;
 

@@ -7,6 +7,7 @@ const divisions = require('./divisions');
 const states = require('./states');
 const provinces = require('./provinces');
 const logs = require('./logs');
+const contexts = require('./contexts');
 
 module.exports = {
     requests,
@@ -16,5 +17,6 @@ module.exports = {
     divisions,
     states,
     provinces,
-    logs
+    logs,
+    contexts
 };

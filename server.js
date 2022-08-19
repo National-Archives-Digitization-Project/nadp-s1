@@ -26,7 +26,7 @@ server.use(verifyAPIRequests);
 // Verify the API Key
 
 // V1 endpoints //
-const { requests, users, archives, divisions, states, provinces, logs } = require('./routes/v1');
+const { requests, users, archives, divisions, states, provinces, logs, contexts } = require('./routes/v1');
 server.use("/api/v1/users", users);
 server.use("/api/v1/requests", requests);
 server.use("/api/v1/divisions", divisions);
@@ -34,6 +34,7 @@ server.use("/api/v1/provinces", provinces);
 server.use("/api/v1/archives", archives);
 server.use("/api/v1/logs", logs);
 server.use("/api/v1/states", states);
+server.use("/api/v1/contexts", contexts);
 // V1 endpoints //
 
 server.get('*', (req, res) => {

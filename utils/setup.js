@@ -62,6 +62,7 @@ const setup = (dbCon) => {
 
     dbCon.setting.estimatedDocumentCount((err, count) => {
         if (!err && count === 0) {
+
             // initialise state //
             new dbCon.state({
                 name: "Abuja FCT"
@@ -71,7 +72,6 @@ const setup = (dbCon) => {
                 }
                 console.log("added 'Abuja FCT' to states collection");
             });
-
 
             new dbCon.state({
                 name: "Enugu"
