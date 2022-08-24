@@ -15,21 +15,12 @@ server.use(helmet());
 //CORS middleware
 // var allowCrossDomain = function (req, res, next) {
 //     res.header('Access-Control-Allow-Origin', '*');
-//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,HEAD');
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH');
+//     res.header("Access-Control-Allow-Headers", "Origin,x-api-key, X-Requested-With, Content-Type, Accept");
 //     next();
 // }
 
-server.use(cors({
-    origin: true,
-    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-    allowCrossDomain: true,
-    optionsSuccessStatus: 200,
-    preflightContinue: true,
-    credentials: true,
-    maxAge: 3600,
-    allowedHeaders: ["Content-Type", "x-api-key", "Origin", "X-Requested-With", "Accept"]
-}));
+server.use(cors());
 
 
 // server.use(morgan('common'));
