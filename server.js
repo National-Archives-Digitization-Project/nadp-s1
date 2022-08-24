@@ -11,12 +11,9 @@ const { verifyAPIRequests } = require('./middlewares');
 
 server.use(express.urlencoded({ extended: false, limit: "30mb" }));
 server.use(express.json({ limit: "30mb" }));
-server.use(helmet({
-    allowedHeaders: ["GET", "POST"],
-    origin: ["*"]
-}));
+server.use(helmet());
 server.use(cors({
-    origin: ['https://nadpclient.vercel.app/', '*'],
+    origin: ['https://nadpclient.vercel.app/', 'nadpclient.vercel.app', 'vercel.app'],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "x-api-key"]
 }));
