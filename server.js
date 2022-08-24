@@ -11,9 +11,12 @@ const { verifyAPIRequests } = require('./middlewares');
 
 server.use(express.urlencoded({ extended: false, limit: "30mb" }));
 server.use(express.json({ limit: "30mb" }));
-server.use(helmet());
+server.use(helmet({
+    allowedHeaders: ["GET", "POST"],
+    origin: ["*"]
+}));
 server.use(cors({
-    origin: ['https://nadp-c2.vercel.app/', 'https://www.ezeagu.com/'],
+    origin: ['https://nadp-c2.vercel.app/'],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "x-api-key"]
 }));
