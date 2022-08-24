@@ -13,15 +13,24 @@ server.use(express.json({ limit: "30mb" }));
 server.use(helmet());
 
 //CORS middleware
-const allowCrossDomain = (req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,HEAD');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-}
+// var allowCrossDomain = function (req, res, next) {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,HEAD');
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// }
 
-server.use(cors());
-server.use(allowCrossDomain);
+server.use(cors({
+    origin: true,
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    allowCrossDomain: true,
+    optionsSuccessStatus: 200,
+    preflightContinue: true,
+    credentials: true,
+    maxAge: 3600,
+    allowedHeaders: ["Content-Type", "x-api-key", "Origin", "X-Requested-With", "Accept"]
+}));
+
 
 // server.use(morgan('common'));
 server.use(compression());
