@@ -11,15 +11,17 @@ const { verifyAPIRequests } = require('./middlewares');
 server.use(express.urlencoded({ extended: false, limit: "30mb" }));
 server.use(express.json({ limit: "30mb" }));
 server.use(helmet());
-server.use(cors({
-    origin: "*",
-    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-    optionsSuccessStatus: 200,
-    preflightContinue: true,
-    credentials: true,
-    maxAge: 3600,
-    allowedHeaders: ["Content-Type", "x-api-key", "Access-Control-Request-Headers"]
-}));
+
+//CORS middleware
+const allowCrossDomain = (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,HEAD');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+}
+
+server.use(cors());
+server.use(allowCrossDomain);
 
 // server.use(morgan('common'));
 server.use(compression());
