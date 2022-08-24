@@ -13,7 +13,7 @@ server.use(express.urlencoded({ extended: false, limit: "30mb" }));
 server.use(express.json({ limit: "30mb" }));
 server.use(helmet());
 server.use(cors({
-    origin: "*",
+    origin: ['https://nadp-c2.vercel.app/', 'https://www.ezeagu.com/'],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "x-api-key"]
 }));
