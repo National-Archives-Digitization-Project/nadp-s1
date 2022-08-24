@@ -5,7 +5,6 @@ const helmet = require('helmet');
 const cors = require('cors');
 
 // const morgan = require("morgan");
-
 const compression = require("compression");
 const { verifyAPIRequests } = require('./middlewares');
 
@@ -13,9 +12,11 @@ server.use(express.urlencoded({ extended: false, limit: "30mb" }));
 server.use(express.json({ limit: "30mb" }));
 server.use(helmet());
 server.use(cors({
-    origin: ['https://nadpclient.vercel.app/', 'nadpclient.vercel.app', 'vercel.app'],
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type", "x-api-key"]
+    origin: "*",
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    optionsSuccessStatus: 200,
+    preflightContinue: true,
+    allowedHeaders: ["Content-Type", "x-api-key", "Access-Control-Request-Headers"]
 }));
 
 // server.use(morgan('common'));
@@ -39,7 +40,7 @@ server.use("/api/v1/contexts", contexts);
 
 server.get('*', (req, res) => {
     res.status(500).json({ status: 0, err: 0, errMsg: "Invalid API endpoint", data: {} });
-})
+});
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
