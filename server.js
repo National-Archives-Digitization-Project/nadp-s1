@@ -16,6 +16,8 @@ server.use(cors({
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     optionsSuccessStatus: 200,
     preflightContinue: true,
+    credentials: true,
+    maxAge: 3600,
     allowedHeaders: ["Content-Type", "x-api-key", "Access-Control-Request-Headers"]
 }));
 
