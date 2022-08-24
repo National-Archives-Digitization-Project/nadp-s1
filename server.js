@@ -16,7 +16,7 @@ server.use(helmet({
     origin: ["*"]
 }));
 server.use(cors({
-    origin: ['https://nadp-c2.vercel.app/'],
+    origin: ['https://nadpclient.vercel.app/', '*'],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "x-api-key"]
 }));
